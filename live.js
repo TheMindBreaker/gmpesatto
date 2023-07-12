@@ -14,11 +14,39 @@ server.on("connection", (socket) => {
     socket.on("data", function (data) {
         try {
             let params = JSON.parse(data.toString());
-            logger.info(params);
-        } catch(e) {
-            logger.error(e)
+            switch (params.method) {
+                case "login":
+                    login.init(params, log, socket, response => {
+                        if (response.success) {
+                            logger.info("LOGIN FROM : ", socket.remotePort)
+                            logger.info(response)
+                        }
+                        logger.info('LOGIN DATA: ', socket.remotePort, " //// ", response)
+                        response = JSON.stringify({
+                            "method": "login",
+                            "result":
+                                {
+                                    "register": 0,
+                                    "historic":  "51.222.106.27:3080",
+                                    "liveData": "51.222.106.27:3081",
+                                    "realTime": new Date().getTime(),
+                                    "para_command": "01030000005045F6;0101000000503C36",
+                                    "con_command": "01030000005045F6;0101000000503C36",
+                                    "online_rate": 15,
+                                    "offline_rate": 15,
+                                },
+                            "retcode": "000000"
+                        });
+                        socket.write(response)
+                    })
+                    break
+                default:
+                    logger.info(params)
+                    break
+            }
+        } catch (e) {
+            log.error(e);
         }
-        
     })
 
 
