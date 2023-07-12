@@ -33,4 +33,7 @@ server.on("listening", () => {
     
 })
 
-server.listen(3080);
+server.listen(3080, "0.0.0.0", function() {
+    var host = server4.address().address;
+    logger.info('LIVE Server Listening at:' + host + ":3080");
+});

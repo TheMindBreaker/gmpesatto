@@ -32,4 +32,7 @@ server.on("listening", () => {
     logger.info("HIST SERVER LISTENING: 3081");
 })
 
-server.listen(3081);
+server.listen(3081, "0.0.0.0", function() {
+    var host = server4.address().address;
+    logger.info('HIST Server Listening at:' + host + ":3081");
+});
