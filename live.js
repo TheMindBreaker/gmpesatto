@@ -46,7 +46,7 @@ server.on("connection", (socket) => {
                     break
             }
         } catch (e) {
-            log.error(e);
+            logger.error(e);
         }
     })
 
