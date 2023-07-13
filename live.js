@@ -42,6 +42,7 @@ server.on("connection", (socket) => {
                     break
                 default:
                     logger.info(params)
+                    socket.write(JSON.stringify({ok}))
                     break
             }
         } catch (e) {
