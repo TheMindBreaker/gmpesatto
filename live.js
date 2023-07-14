@@ -26,7 +26,7 @@ server.on("connection", (socket) => {
                             "method": "login",
                             "result":
                                 {
-                                    "register": 0,
+                                    "register": 1,
                                     "historic":  "51.222.106.27:3080",
                                     "liveData": "51.222.106.27:3081",
                                     "realTime": new Date().getTime(),
@@ -34,6 +34,10 @@ server.on("connection", (socket) => {
                                     "con_command": "01030000005045F6;0101000000503C36",
                                     "online_rate": 15,
                                     "offline_rate": 15,
+                                    "data_mode":1,
+                                    "moduletype":"HGM6120",
+                                    "modulePort": 4,
+                                    "moduleBaud": 0
                                 },
                             "retcode": "000000"
                         });
